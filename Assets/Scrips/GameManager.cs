@@ -2,17 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonMonoBehaviour<GameManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum Sequence
     {
-        
+        selecting,
     }
 
-    // Update is called once per frame
+    public enum Selection
+    {
+        bash,
+    }
+
+    public Sequence sequence { get; private set; }
+        = Sequence.selecting;
+
+    public Selection selection { get; private set; }
+        = Selection.bash;
+
+    [SerializeField] private UIManager uiManager;
+
+    [SerializeField] private EventName eventToSelectingSlot;
+
+    void Start()
+    {
+    }
+
     void Update()
     {
-        
+
     }
 }

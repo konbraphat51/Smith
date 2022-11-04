@@ -15,6 +15,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     [SerializeField] private TextButton[] perkButtons;
 
     [Header("Bash Field")]
+    [SerializeField] private ForgingSlot[] forgingSlots;
     [SerializeField] private GameObject[] focusedSlot;
 
     [Header("Events - Main Menu")]
@@ -26,6 +27,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
     [Header("Events - Slots")]
     [SerializeField] private EventName eventSlotPointerOn;
+    [SerializeField] private EventName eventSlotPointerOff;
 
     private enum MainPanelState
     {
@@ -39,6 +41,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     {
         EventManager.StartListening(eventSwitchMainMenu, SwitchMainPanel);
         EventManager.StartListening(eventSlotPointerOn, FocusSlot);
+        EventManager.StartListening(eventSlotPointerOff, OnPointerOffSlot);
     }
 
     private void SwitchMainPanel(string str)
@@ -58,6 +61,10 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         }
     }
 
+    /// <summary>
+    /// lighten up the slot the pointer is on
+    /// </summary>
+    /// <param name="selectedN"></param>
     public void FocusSlot(string selectedN)
     {
         int number = int.Parse(selectedN);
@@ -79,6 +86,30 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
                 }
 
                 break;
+        }
+    }
+
+    /// <summary>
+    /// to clear focus slot when pointer is off the forgin area
+    /// </summary>
+    private void OnPointerOffSlot(string number)
+    {
+        bool pointerOnSlot = false;
+        for (int cnt = 0; cnt < slotsN; cnt++)
+        {
+            if (forgingSlots[cnt].IsPointerOn())
+            {
+                pointerOnSlot = true;
+                break;
+            }
+        }
+
+        if (!pointerOnSlot)
+        {
+            for (int cnt = 0; cnt < slotsN; cnt++)
+            {
+                focusedSlot[cnt].SetActive(false);
+            }
         }
     }
 }

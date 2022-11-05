@@ -126,8 +126,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number: 0
+  hittedPoint: 0
   eventPointerOn: {fileID: 11400000, guid: c4b0a76885f2fbc458e85e5f655d7dcc, type: 2}
   eventPointerOff: {fileID: 11400000, guid: 6225f9040104ab04da955797967f2d24, type: 2}
+  eventPointerClicked: {fileID: 11400000, guid: 6052b85eedd4f7b48afa8b2bd9222859, type: 2}
   pointerOn: 0
 --- !u!114 &1040778969253651102
 MonoBehaviour:
@@ -165,6 +167,22 @@ MonoBehaviour:
         - m_Target: {fileID: 2929523675519367852}
           m_TargetAssemblyTypeName: ForgingSlot, Assembly-CSharp
           m_MethodName: OnPointerOff
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2929523675519367852}
+          m_TargetAssemblyTypeName: ForgingSlot, Assembly-CSharp
+          m_MethodName: OnPointerClicked
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

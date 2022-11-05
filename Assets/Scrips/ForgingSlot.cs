@@ -6,10 +6,27 @@ public class ForgingSlot : MonoBehaviour
 {
     [SerializeField] private int number = 0;
 
+    public int hittedPoint = 0;
+    public int hittedPointerMax = 100;
+    public int safeAreaWidth = 10;
+    public int safeAreaCenter = 80;
+
     [SerializeField] private EventName eventPointerOn;
     [SerializeField] private EventName eventPointerOff;
+    [SerializeField] private EventName eventPointerClicked;
+
+    [SerializeField] private ForgingGauge forgingGauge;
 
     public bool pointerOn = false;
+
+    private void Start()
+    {
+        forgingGauge.Initialize(hittedPoint,
+            hittedPointerMax,
+            safeAreaWidth,
+            safeAreaCenter);
+    }
+
     public void OnPointerOn()
     {
         pointerOn = true;
@@ -21,8 +38,19 @@ public class ForgingSlot : MonoBehaviour
         EventManager.TriggerEvent(eventPointerOff, number.ToString());
     }
 
+    public void OnPointerClicked()
+    {
+        EventManager.TriggerEvent(eventPointerClicked, number.ToString());
+    }
+
     public bool IsPointerOn()
     {
         return pointerOn;
+    }
+
+    public void Bash(int hitPoint)
+    {
+        hittedPoint += hitPoint;
+        forgingGauge.UpdatePoint(hittedPoint);
     }
 }

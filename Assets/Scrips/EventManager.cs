@@ -86,6 +86,8 @@ public class EventManager : MonoBehaviour
     /// <param name="str0">param gived to the function called</param>
     public static void TriggerEvent(string eventName, string str0)
     {
+        Debug.Log("Triggered: " + eventName);
+
         UnityEvent<string> thisEvent = null;
         if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
         {

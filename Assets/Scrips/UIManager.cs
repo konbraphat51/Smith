@@ -42,6 +42,8 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         EventManager.StartListening(eventSwitchMainMenu, SwitchMainPanel);
         EventManager.StartListening(eventSlotPointerOn, FocusSlot);
         EventManager.StartListening(eventSlotPointerOff, OnPointerOffSlot);
+
+        bashButton.SetSelected(true);
     }
 
     private void SwitchMainPanel(string str)

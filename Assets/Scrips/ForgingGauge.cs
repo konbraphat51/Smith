@@ -27,8 +27,7 @@ public class ForgingGauge : MonoBehaviour
     private void Start()
     {
         //get edge
-        rightEdge = rightEdgeObject.transform.position.x;
-        leftEdge = leftEdgeObject.transform.position.x;
+        GetEdge();
     }
 
     private void Update()
@@ -49,6 +48,8 @@ public class ForgingGauge : MonoBehaviour
         showingRatio = GetRatio();
 
         //edit safe zone rect
+        GetEdge();
+
         float safeAreaWidthRatio = (float)this.safeAreaWidthPoint / (float)this.hittedPointMax;
         float safeAreaCenterRatio = (float)this.safeAreaCenterPoint / (float)this.hittedPointMax;
 
@@ -66,6 +67,12 @@ public class ForgingGauge : MonoBehaviour
 
         safeRectMask.transform.localScale = new Vector2(safeAreaWidthRatio, safeRectMask.transform.localScale.y);
         safeRectMask.transform.position = new Vector2(centerPosX, safeRectMask.transform.position.y);
+    }
+
+    private void GetEdge()
+    {
+        rightEdge = rightEdgeObject.transform.position.x;
+        leftEdge = leftEdgeObject.transform.position.x;
     }
 
     public void UpdatePoint(int hittedPoint)

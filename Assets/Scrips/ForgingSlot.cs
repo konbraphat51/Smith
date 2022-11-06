@@ -10,6 +10,8 @@ public class ForgingSlot : MonoBehaviour
     public int hittedPointerMax = 100;
     public int safeAreaWidth = 10;
     public int safeAreaCenter = 80;
+    public int excellentAreaWidth = 3;
+    public int excellentAreaCenter = 80;
 
     [SerializeField] private EventName eventPointerOn;
     [SerializeField] private EventName eventPointerOff;
@@ -24,7 +26,9 @@ public class ForgingSlot : MonoBehaviour
         forgingGauge.Initialize(hittedPoint,
             hittedPointerMax,
             safeAreaWidth,
-            safeAreaCenter);
+            safeAreaCenter,
+            excellentAreaWidth,
+            excellentAreaCenter);
     }
 
     public void OnPointerOn()
